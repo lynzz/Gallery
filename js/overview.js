@@ -31,7 +31,6 @@ $(function () {
             linksContainer = $('#links'),
             baseUrl;
 
-        console.log(result)
         // Add the demo images as links with thumbnails to the page:
         $.each(result.photos.photo, function (index, photo) {
             //console.log(photo)

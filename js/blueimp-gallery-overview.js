@@ -84,7 +84,7 @@
             var $page = this.page;
             console.log(index + '/' + this.slides.length)
             if ($page.length) {
-                this.page.html(index + '/' + this.slides.length)
+                $page.html(index + '/' + this.slides.length)
             }
         },
 

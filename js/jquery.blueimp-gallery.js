@@ -69,6 +69,7 @@
                 {
                     container: container[0],
                     index: this,
+                    closeOnSwipeUpOrDown: false,
                     event: event
                 },
                 callbacks
