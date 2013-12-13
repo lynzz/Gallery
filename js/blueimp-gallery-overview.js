@@ -40,17 +40,36 @@
         handleClick = Gallery.prototype.handleClick,
         handleSlide = Gallery.prototype.handleSlide,
         initWidget = Gallery.prototype.initWidget,
+        initEventListeners = Gallery.prototype.initEventListeners,
+        destroyEventListeners = Gallery.prototype.destroyEventListeners,
         handleClose = Gallery.prototype.handleClose;
 
     $.extend(Gallery.prototype, {
         initWidget: function() {
             var $container = $(this.options.container);
+
             this.despElement = $container.find(
                 this.options.despElement
             ).first();
             this.page = $container.find(this.options.pageElement).first();
-            console.log($container)
             initWidget.call(this);
+        },
+
+        initEventListeners: function() {
+            var proxyListener = this.proxyListener;
+
+            initEventListeners.call(this);
+            this.container.on('mouseenter', proxyListener);
+        },
+        destroyEventListeners: function() {
+            var proxyListener = this.proxyListener;
+
+            destroyEventListeners.call(this);
+            this.container.off('mouseenter', proxyListener);
+        },
+
+        onmouseenter: function(event) {
+            console.log(event)
         },
 
         initSlides: function (reload) {
@@ -58,6 +77,7 @@
         },
 
         handleClick: function (event) {
+            console.log(1)
             return handleClick.call(this, event)
         },
 
