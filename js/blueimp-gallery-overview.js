@@ -30,6 +30,7 @@
     'use strict';
 
     $.extend(Gallery.prototype.options, {
+        controlHeaderElement: '.header-hover',
         despElement: '.desp-content',
         pageElement: '.page'
     });
@@ -56,20 +57,38 @@
         },
 
         initEventListeners: function() {
-            var proxyListener = this.proxyListener;
+            var self = this;
 
             initEventListeners.call(this);
-            this.container.on('mouseenter', proxyListener);
+            this.container.on('mouseenter', self.options.controlHeaderElement, self.proxyListener);
+            this.container.on('mouseleave', self.options.controlHeaderElement,  self.proxyListener);
+
         },
         destroyEventListeners: function() {
-            var proxyListener = this.proxyListener;
+            var self = this;
 
             destroyEventListeners.call(this);
-            this.container.off('mouseenter', proxyListener);
+            this.container.off('mouseenter', self.options.controlHeaderElement, self.proxyListener);
+            this.container.off('mouseleave', self.options.controlHeaderElement, self.proxyListener);
         },
 
         onmouseenter: function(event) {
-            console.log(event)
+            //this.container.addClass('');
+//            var self = this;
+//            this.setTimeout(function() {
+//                self.container.stop().animate({marginTop: '51px'}, 'fast')
+//            }, this.container, 3000)
+        },
+
+        onmouseleave: function(event) {
+            var self = this;
+//            this.setTimeout(function() {
+//                self.container.stop().animate({marginTop: '0'}, 'fast')
+//            }, this.container, 3000)
+        },
+
+        toggleHeader: function() {
+
         },
 
         initSlides: function (reload) {
@@ -77,7 +96,6 @@
         },
 
         handleClick: function (event) {
-            console.log(1)
             return handleClick.call(this, event)
         },
 
